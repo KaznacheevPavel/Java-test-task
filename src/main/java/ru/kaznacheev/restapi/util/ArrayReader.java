@@ -15,12 +15,14 @@ public class ArrayReader {
     @Cacheable(cacheNames = "file", key = "#path")
     public int[] readNumbersToArray(String path) {
         int[] array = new int[0];
-        try (Stream<String> stream = Files.lines(Paths.get(path))) {
-            array = stream.mapToInt(Integer::valueOf).toArray();
-        } catch (FileNotFoundException e) {
+        if (Files.exists(Paths.get(path))) {
+            try (Stream<String> stream = Files.lines(Paths.get(path))) {
+                array = stream.mapToInt(Integer::valueOf).toArray();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
             throw new UserFileNotFoundException();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         return array;
     }
