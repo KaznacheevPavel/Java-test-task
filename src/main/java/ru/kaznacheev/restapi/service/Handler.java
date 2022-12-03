@@ -1,8 +1,8 @@
-package ru.kaznacheev.restapi.model;
+package ru.kaznacheev.restapi.service;
 
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import ru.kaznacheev.restapi.dto.InformationDTO;
 import ru.kaznacheev.restapi.util.ArrayReader;
 import ru.kaznacheev.restapi.util.operation.OperationType;
@@ -14,7 +14,7 @@ import ru.kaznacheev.restapi.util.error.OperationNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+@Service
 public class Handler {
     private InformationDTO information;
     private final ArrayReader ARRAY_READER;
